@@ -33,6 +33,6 @@ public class PlanetRequest {
     }
 
     public Planet toPlanet() {
-        return new Planet(id, name, climate, terrain);
+        return new Planet(name, climate, terrain);
     }
 }

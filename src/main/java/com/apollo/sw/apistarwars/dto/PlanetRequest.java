@@ -2,22 +2,23 @@ package com.apollo.sw.apistarwars.dto;
 
 import com.apollo.sw.apistarwars.domains.Planet;
 
+import javax.validation.constraints.NotEmpty;
+
 public class PlanetRequest {
 
-    private Long id;
+    @NotEmpty
     private String name;
+
+    @NotEmpty
     private String climate;
+
+    @NotEmpty
     private String terrain;
 
-    public PlanetRequest(Long id, String name, String climate, String terrain) {
-        this.id = id;
+    public PlanetRequest(String name, String climate, String terrain) {
         this.name = name;
         this.climate = climate;
         this.terrain = terrain;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public String getName() {

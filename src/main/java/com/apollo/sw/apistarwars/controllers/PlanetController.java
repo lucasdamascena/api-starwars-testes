@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -20,7 +21,7 @@ public class PlanetController {
     }
 
     @PostMapping
-    public ResponseEntity<Planet> create(@RequestBody PlanetRequest planetRequest) {
+    public ResponseEntity<Planet> create(@RequestBody @Valid PlanetRequest planetRequest) {
         Planet planet = planetRequest.toPlanet();
         Planet planetCreated = planetService.create(planet);
         return ResponseEntity.status(HttpStatus.CREATED).body(planetCreated);
@@ -41,7 +42,7 @@ public class PlanetController {
     @GetMapping
     public ResponseEntity<List<Planet>> list(@RequestParam(required = false) String climate,
                                              @RequestParam(required = false) String terrain) {
-        List<Planet> planets = planetService.list(terrain, climate);
+        List<Planet> planets = planetService.list(climate, terrain);
         return ResponseEntity.ok(planets);
     }
 

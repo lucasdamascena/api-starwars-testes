@@ -1,20 +1,12 @@
 package com.apollo.sw.apistarwars.services;
 
-import static com.apollo.sw.apistarwars.commons.PlanetConstants.INVALID_PLANET;
-import static com.apollo.sw.apistarwars.commons.PlanetConstants.PLANET;
-import static org.assertj.core.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.when;
-
 import com.apollo.sw.apistarwars.domains.Planet;
 import com.apollo.sw.apistarwars.domains.utils.QueryBuilder;
 import com.apollo.sw.apistarwars.repositories.PlanetRepository;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.Example;
 
@@ -22,6 +14,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+
+import static com.apollo.sw.apistarwars.commons.PlanetConstants.INVALID_PLANET;
+import static com.apollo.sw.apistarwars.commons.PlanetConstants.PLANET;
+import static org.assertj.core.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class PlanetServiceTest {
@@ -55,7 +57,7 @@ class PlanetServiceTest {
         Optional<Planet> sutPlanet = planetService.get(1L);
 
         assertThat(sutPlanet).isNotEmpty();
-        assertThat(sutPlanet.get()).isEqualTo(PLANET);
+        assertEquals(PLANET, sutPlanet.get());
     }
 
     @Test
@@ -74,7 +76,7 @@ class PlanetServiceTest {
         Optional<Planet> sutPlanet = planetService.getByName(PLANET.getName());
 
         assertThat(sutPlanet).isNotEmpty();
-        assertThat(sutPlanet.get()).isEqualTo(PLANET);
+        assertEquals(PLANET, sutPlanet.get());
     }
 
     @Test
@@ -84,7 +86,7 @@ class PlanetServiceTest {
 
         Optional<Planet> sutPlanet = planetService.getByName(name);
 
-        assertThat(sutPlanet.isEmpty());
+        assertTrue(sutPlanet.isEmpty());
     }
 
     @Test
@@ -101,8 +103,7 @@ class PlanetServiceTest {
 
         List<Planet> sutPlanets = planetService.list(PLANET.getClimate(), PLANET.getTerrain());
 
-        assertThat(sutPlanets).isNotEmpty();
-        assertThat(sutPlanets).hasSize(1);
+        assertThat(sutPlanets).isNotEmpty().hasSize(1);
         assertThat(sutPlanets.get(0)).isEqualTo(PLANET);
     }
 

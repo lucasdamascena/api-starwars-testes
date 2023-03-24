@@ -86,12 +86,12 @@ class PlanetServiceTest {
 
         Optional<Planet> sutPlanet = planetService.getByName(name);
 
-        assertTrue(sutPlanet.isEmpty());
+        assertEquals(true, sutPlanet.isEmpty());
     }
 
     @Test
     void listPlanets_ReturnsAllPlanets() {
-        List<Planet> planets = new ArrayList<>() {
+        List<Planet> planets = new ArrayList<Planet>() {
             {
                 add(PLANET);
             }

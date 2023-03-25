@@ -1,5 +1,4 @@
 # api-starwars-testes
-#### Projeto criado para treinar testes no Spring Framework
 
 Projeto criado para treinar testes no Spring Framework, houve a utilização de SonarLint para detecção de erros, mas ressalto que a prioridade deste projeto é a prática do JUnit 5. 
 
@@ -18,7 +17,7 @@ Foram utilizados:
 - Docker;
 - Java: V11;
 - JUnit: V5;
-- Maven: V3.8.1
+- Maven: V3.8.7
 - MySQL: V8;
 - Spring-Boot: V2.3.7-RELEASE.
 
@@ -26,12 +25,17 @@ Foram utilizados:
 ##
 Executa todos os testes
 ```sh
- mvn clean verify
+mvn clean verify
 ```
 ##
-Executa testes, porém, ignora testes unitários
+Executa **SOMENTE** testes de integração
 ```sh
- mvn clean verify -Dsurefire.skip=true
+mvn clean verify -Dsurefire.skip=true
+```
+##
+Executa **SOMENTE** testes unitários
+```sh
+mvn clean verify -DskipITs=true
 ```
 ##
 Executa testes unitários e em seguida gera relatórios de cobertura, em: **target\site\jacoco\index.html**
